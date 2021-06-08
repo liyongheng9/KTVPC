@@ -10,7 +10,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 import './assets/css/reset.css'
 import './assets/css/animate.min.css'
 import VueLazyLoad from 'vue-lazyload'
-import 'github-markdown-css/github-markdown.css'
+import VueMarkdown from 'vue-markdown'
 Vue.use(VueLazyLoad, {
   error: '@/assets.logo.png',
   loading: '@/assets.logo.png'
@@ -38,7 +38,9 @@ Axios.interceptors.response.use(function (res) {
 
 Vue.prototype.$http = Axios
 Vue.use(ElementUI)
+Vue.use(VueMarkdown)
 Vue.prototype.$layer = layer(Vue)
+Vue.prototype.imgURL = 'http://49.235.93.38:82'
 Vue.prototype.http = 'http://49.235.93.38:82'
 
 new Vue({

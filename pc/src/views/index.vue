@@ -16,7 +16,7 @@
                         <router-link class="li" to="">模特展示</router-link>
                     </li>
                     <li>
-                        <router-link class="li" to="">环境展示</router-link>
+                        <router-link class="li" to="/environment">环境展示</router-link>
                     </li>
                     <li>
                         <router-link class="li" to="">夜场新闻</router-link>

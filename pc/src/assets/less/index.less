@@ -67,6 +67,13 @@ li {
 a {
     text-decoration: none;
 }
+* {
+    margin: 0;
+    padding: 0;
+}
+.dn {
+    display: none;
+}
 .clearfix::after {
     content: "";
     display: block;
@@ -76,13 +83,6 @@ a {
   }
 .clearfix {
     *zoom: 1;
-}
-* {
-    margin: 0;
-    padding: 0;
-}
-.dn {
-    display: none;
 }
 /* 头部 */
 header {
@@ -264,6 +264,7 @@ header {
         }
     }
 }
+
 /* 首页 */
 .home {
     position: relative;
@@ -439,6 +440,7 @@ header {
                                 font-size: 18px;
                                 color: #666666;
                                 margin-bottom: 40px;
+                                margin-top: 20px;
                             }
                             p {
                                 line-height: 25px;
@@ -678,10 +680,7 @@ header {
     }
 }
 
-/* 页脚 */
 footer {
-    position: relative;
-    z-index: 1;
     text-align: left;
     background-color: #555;
     .fot-top {
@@ -728,7 +727,6 @@ footer {
         .right {
             float: right;
             margin-top: 45px;
-            text-align: center;
             img {
                 width: 162px;
                 height: 162px;
@@ -761,6 +759,7 @@ footer {
             width: 252px;
             height: 180px;
             float: left;
+            animation: top both 1.5s;
             ul {
                 width: 242px;
                 float: left;
@@ -790,16 +789,136 @@ footer {
             }
         }
         .about-right {
+            float: left;
+            animation: top both 1.5s;
             .aboutus {
-                width: 958px;
+                width: 938px;
+                margin: 0 10px 10px 0;
+                padding-top: 20px;
+                padding: 20px 20px 20px 20px;
+                box-sizing: border-box;
+                position: relative;
+                z-index: 2;
+                background-color: #fff;
                 .title {
                     h1 {
                         font-size: 30px;
                         color: #333333;
                         font-weight: 700;
+                        width: 100%;
+                        overflow: hidden;
+                        height: 55px;
+                        position: relative;
+                        border-bottom: 1px solid #dbdbdb;
+                    }
+                }                                                   .Details {
+                    margin-top: 20px;
+                    margin-bottom: 20px;
+                }                                     
+            }
+        }
+    }
+}
+@keyframes top {
+    0% {
+        opacity: 0;
+        transform: translateY(200px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(-0px);
+    }
+}
+// 环境展示
+.Environment {
+    .mbx-top {
+        height: 35px;
+        margin: 10px 0 10px 0;
+        font-size: 14px;
+        line-height: 35px;
+        padding: 0 0 0 10px;
+        background-color: #E0DFDD;
+        b {
+            color: #2090FF;
+            margin: 0 5px;
+            font-style: normal;
+        }
+    }
+    ol {
+        height: 42px;
+        text-align: center;
+        li {
+            width: 158px;
+            height: 30px;
+            line-height: 30px;
+            border: 1px solid #e0dfdd;
+            :hover {
+                color: #2090ff;
+            }
+        }
+    }
+    ul {
+        li {
+            float: left;
+            width: 292px;
+            height: 372px;
+            margin-right: 20px;
+            border-top: 1px solid #e0dfdd;
+            border-bottom: 1px solid #e0dfdd;
+            box-sizing: border-box;
+            .pic {
+                width: 280px;
+                height: 280px;
+            }
+            img {
+                width: 100%;
+                height: 210px;
+            }
+            h3 {
+                width: 280px;
+                height: 60px;
+                a{
+                    &:hover {
+                        text-decoration: underline;
                     }
                 }
             }
         }
+    }
+    .page {
+        position: relative;
+        z-index: 2;
+        margin: 15px 0 15px 0;
+        .inner {
+            text-align: center;
+            padding: 10px 5px;
+            clear: both;
+            font-size: 0;
+            .page-sum {
+                display: inline-block;
+                margin-left: 5px;
+                padding: 5px 10px;
+                font: 400 12px/1 'Microsoft Yahei';
+                vertical-align: top;
+            }
+            span {
+                border-color: #DDD;
+                color: #AAA;
+                background-color: #FFF;
+                cursor: not-allowed;
+            }
+            strong {
+                background-color: #cccccc;
+                border:1px solid #cccccc;
+            }
+        }
+    }
+    .page a, .page b, .page span, .page strong {
+        display: inline-block;
+        margin-left: 5px;
+        border:1px solid #cccccc;
+        padding: 5px 10px;
+        font: 400 12px/1 'Microsoft Yahei';
+        vertical-align: top;
     }
 }
