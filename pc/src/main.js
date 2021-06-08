@@ -10,13 +10,14 @@ import 'element-ui/lib/theme-chalk/index.css'
 import './assets/css/reset.css'
 import './assets/css/animate.min.css'
 import VueLazyLoad from 'vue-lazyload'
+import 'github-markdown-css/github-markdown.css'
 Vue.use(VueLazyLoad, {
   error: '@/assets.logo.png',
   loading: '@/assets.logo.png'
 })
 Vue.config.productionTip = false
 const Axios = axios.create({
-  baseURL: 'http://localhost:3000',
+  baseURL: 'http://49.235.93.38:82/index.php',
   timeout: 8000,
   headers: {
     'Content-Type': 'application/x-www-form-urlencoded'
@@ -38,7 +39,7 @@ Axios.interceptors.response.use(function (res) {
 Vue.prototype.$http = Axios
 Vue.use(ElementUI)
 Vue.prototype.$layer = layer(Vue)
-Vue.prototype.imgURL = 'http://localhost:3000'
+Vue.prototype.http = 'http://49.235.93.38:82'
 
 new Vue({
   router,
