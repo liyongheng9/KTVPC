@@ -18,13 +18,18 @@
                 </ul>
             </div>
             <div class="about-right">
-                <router-view />
+                <keep-alive>
+                    <router-view />
+                </keep-alive>
             </div>
         </div>
     </div>
 </template>
 <style lang="less" scoped>
 @import '../assets/less/index.less';
+.about-right {
+    text-align: left;
+}
 </style>
 <script>
 export default {

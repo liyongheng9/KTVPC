@@ -4,7 +4,7 @@
             <h1><VueMarkdown :source="title"></VueMarkdown></h1>
         </div>
         <div class="Details">
-            <VueMarkdown :source="value" style="margin: 0px; padding: 0px; color: rgb(33, 33, 33); font-family: tt, Arial, 微软雅黑; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); text-align: center;"></VueMarkdown>
+            <VueMarkdown :source="value" style="margin: 0px; padding: 0px; color: rgb(33, 33, 33); font-family: tt, Arial, 微软雅黑; font-size: 16px; white-space: normal; background-color: rgb(255, 255, 255); text-align: center; line-height: 50px;"></VueMarkdown>
         </div>
     </div>
 </template>

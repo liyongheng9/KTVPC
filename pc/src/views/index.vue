@@ -2,30 +2,12 @@
     <div>
         <header>
             <div class="w1200">
-                <div class="logo">
+                <div class="logo" >
                     <img src="../assets/img/20771839_1609920594.png" class="bg">
                 </div>
                 <ul class="nav">
-                    <li class="present">
-                        <router-link class="li" to="/index/home">首页</router-link>
-                    </li>
-                    <li>
-                        <router-link class="li" to="/aboutus">关于我们</router-link>
-                    </li>
-                    <li>
-                        <router-link class="li" to="">模特展示</router-link>
-                    </li>
-                    <li>
-                        <router-link class="li" to="/environment">环境展示</router-link>
-                    </li>
-                    <li>
-                        <router-link class="li" to="">夜场新闻</router-link>
-                    </li>
-                    <li>
-                        <router-link class="li" to="/aboutus">联系我们</router-link>
-                    </li>
-                    <li>
-                        <router-link class="li" to="">招聘要求</router-link>
+                    <li v-for="(val, index) in data" :key="index" :class="val.flag ? 'present' : '' " @click="presentclcikc(index)">
+                        <router-link class="li" :to="val.path">{{val.name}}</router-link>
                     </li>
                 </ul>
                 <div class="lxwm">
@@ -35,7 +17,12 @@
             </div>
         </header>
         <div class="content">
-            <router-view />
+            <!-- keep-alive -->
+            <!-- exclude排除缓存组件的名称 -->
+            <!-- include包含指定名称的组件进行缓存 -->
+            <keep-alive>
+                <router-view />
+            </keep-alive>
             <div class="immobilization" @mouseover="setflag"  :class="flag ? 'dn' : ''"></div>
             <div class="nav" :class="flag ? '' : 'dn'">
                 <ul>
@@ -60,7 +47,7 @@
                         </a>
                     </li>
                 </ul>
-                <span @click="getflag"></span>
+                <span @click.prevent="getflag"></span>
             </div>
         </div>
         <my-footer></my-footer>
@@ -72,16 +59,59 @@ import Footer from './Footer'
 export default {
     data () {
         return {
+            data: [
+                {
+                    name: '首页',
+                    path: '/home',
+                    flag: true
+                },
+                {
+                    name: '关于我们',
+                    path: '/aboutus',
+                    flag: false
+                },
+                {
+                    name: '模特展示',
+                    path: '/modelshows',
+                    flag: false
+                },
+                {
+                    name: '环境展示',
+                    path: '/environment',
+                    flag: false
+                },
+                {
+                    name: '夜场新闻',
+                    path: '/news',
+                    flag: false
+                },
+                {
+                    name: '联系我们',
+                    path: '/aboutus',
+                    flag: false
+                },
+                {
+                    name: '招聘要求',
+                    path: '/aboutus',
+                    flag: false
+                }
+            ],
             flag: false,
             delflag: false
         }
     },
     methods: {
+        presentclcikc (index) {
+            this.data.find(val => (val.flag = false))
+            this.data[index].flag = true
+            // console.log(this.data)
+        },
         getflag () {
             this.flag = false
         },
         setflag () {
             this.flag = true
+            this.delflag = false
         },
         getonline () {
             this.delflag = true

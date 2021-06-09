@@ -11,6 +11,7 @@ import './assets/css/reset.css'
 import './assets/css/animate.min.css'
 import VueLazyLoad from 'vue-lazyload'
 import VueMarkdown from 'vue-markdown'
+import 'github-markdown-css/github-markdown.css'
 Vue.use(VueLazyLoad, {
   error: '@/assets.logo.png',
   loading: '@/assets.logo.png'
@@ -18,7 +19,7 @@ Vue.use(VueLazyLoad, {
 Vue.config.productionTip = false
 const Axios = axios.create({
   baseURL: 'http://49.235.93.38:82/index.php',
-  timeout: 8000,
+  // timeout: 8000,
   headers: {
     'Content-Type': 'application/x-www-form-urlencoded'
   }

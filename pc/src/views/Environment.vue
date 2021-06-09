@@ -2,7 +2,7 @@
     <div class="Environment w1200">
        <div class="mbx-top">
            <span>
-               <router-link to="/index/home">首页</router-link>
+               <router-link to="/home">首页</router-link>
             </span>
             <b>>></b>
             <span><router-link to="/Environment">环境展示</router-link></span>
@@ -14,13 +14,13 @@
         </ol>
         <ul class="clearfix">
             <li v-for="val in value" :key="val.id">
-                <a href="##" class="pics">
+                <a href="##" class="pics" @click.prevent="details(val.id)">
                     <div class="pic">
                         <img :src="url(val.image)" alt="">
                     </div>
                 </a>
                 <h3>
-                    <a href="">{{val.title}}</a>
+                    <a href="" @click.prevent="details(val.id)">{{val.title}}</a>
                 </h3>
             </li>
         </ul>
@@ -38,6 +38,9 @@
 </template>
 <style lang="less" scoped>
 @import '../assets/less/index.less';
+p {
+    text-align: left !important;
+}
 </style>
 <script>
 export default {
@@ -49,6 +52,9 @@ export default {
     methods: {
         url (src) {
             return this.imgURL + src
+        },
+        details (id) {
+            this.$router.push('/envdetails/' + id)
         }
     },
     mounted () {

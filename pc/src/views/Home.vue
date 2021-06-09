@@ -23,7 +23,7 @@
                 <p class="border-b">环境/AMBIENT</p>
                 <div class="markdown-body">
                     <ul>
-                        <li v-for="val in list" :key="val.id">
+                        <li v-for="val in list" :key="val.id" @click.prevent="getambient(val.id)">
                             <a href="#">
                                 <img :src="srcurl(val.image)" alt="">
                             </a>
@@ -44,7 +44,7 @@
                         </li>
                     </ul>
                 </div>
-                <button>查看更多</button>
+                <button @click.prevent="getEnvironment">查看更多</button>
             </div>
         </div>
         <!-- 关于 -->
@@ -53,7 +53,7 @@
                 <h3>关于/ABOUT</h3>
                 <h2>锦缘国际夜总会</h2>
                 <p>成都夜总会，成都夜场，成都酒吧各种模特佳丽【13688143752】，设备齐全，装修高端，资源丰富，生意每天开到爆，欢迎随时预定包厢</p>
-                <button>了解详细</button>
+                <button @click.prevent="aboutus">了解详细</button>
             </div>
         </div>
         <!-- 高端KTV夜总会模特 -->
@@ -61,7 +61,7 @@
             <h2 class="border-b">高端KTV夜总会模特</h2>
             <div class="w1200">
                 <ul>
-                    <li v-for="val in  model" :key="val.id">
+                    <li v-for="val in  model" :key="val.id" @click.prevent="getmodeldetailed(val.id)">
                         <a href="#">
                             <div>
                                 <img :src="srcurl(val.image)" alt="">
@@ -82,7 +82,7 @@
                         <img src="../assets/img/image-110.jpeg" alt="">
                     </div>
                     <ul class="fr">
-                        <li v-for="val in news" :key="val.id">
+                        <li v-for="val in news" :key="val.id" @click.prevent="getnews(val.id)">
                             <span>
                                 <img :src="srcurl(val.image)" alt="">
                             </span>
@@ -115,6 +115,21 @@ export default {
         }
     },
     methods: {
+        getambient (id) {
+            this.$router.push('/envdetails/' + id)
+        },
+        getmodeldetailed (id) {
+            this.$router.push('/modeldetailed/' + id)
+        },
+        getEnvironment () {
+            this.$router.push('/environment')
+        },
+        getnews (id) {
+            this.$router.push('/newsdetail/' + id)
+        },
+        aboutus () {
+            this.$router.push('/aboutus')
+        },
         srcurl (url) {
             return this.http + url
         },
@@ -126,11 +141,10 @@ export default {
             })
         },
         getlist () {
-            this.$http.get('api/ambient/list?pageNumber=2&pageSize=3').then(res => {
-                var arr = res
-                this.list = arr.filter((val, index) => {
+            this.$http.get('api/ambient/list').then(res => {
+                this.list = res.filter((val, index) => {
                     if (index < 3) {
-                        return arr[index]
+                        return res[index]
                     }
                 })
                 // console.log(res)
@@ -172,6 +186,5 @@ export default {
 </script>
 
 <style lang="less" scoped>
-
 @import '../assets/less/index.less';
 </style>
