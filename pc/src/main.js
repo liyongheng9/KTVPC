@@ -11,7 +11,9 @@ import './assets/css/reset.css'
 import './assets/css/animate.min.css'
 import VueLazyLoad from 'vue-lazyload'
 import VueMarkdown from 'vue-markdown'
-import 'github-markdown-css/github-markdown.css'
+import Jquery from 'jquery'
+
+Vue.prototype.$ = Jquery
 Vue.use(VueLazyLoad, {
   error: '@/assets.logo.png',
   loading: '@/assets.logo.png'

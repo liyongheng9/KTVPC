@@ -43,7 +43,6 @@ input::-webkit-search-cancel-button {
   display: none;
 }
 .w1200 {
-  position: relative;
   width: 1200px;
   margin: 0 auto;
 }
@@ -173,6 +172,7 @@ header .lxwm img {
 }
 /* 内容 */
 .content {
+  overflow: hidden;
   position: relative;
   width: 100%;
   /* 固定导航栏 */
@@ -267,6 +267,36 @@ header .lxwm img {
   cursor: pointer;
   background-image: url('../img/online_service.png');
 }
+.anim .ambientbox h3,
+.anim .ambientbox p {
+  animation: top 1s ease forwards;
+}
+.anim .ambientbox .markdown-body {
+  animation: top 1s ease 1.5s forwards;
+}
+.anim .fot-top .ev-module-text,
+.anim .fot-top .ev-module-Telnum,
+.anim .fot-top .right {
+  animation: top 1s ease forwards;
+}
+.anim .abouybox h3 {
+  animation: top 1s ease forwards;
+}
+.anim .modelbox h2 {
+  animation: top 1s ease forwards;
+}
+.anim .modelbox li {
+  animation: top 1.2s ease forwards;
+}
+.anim .model h2 {
+  animation: top 1.5s ease forwards;
+}
+.anim .model li {
+  animation: top 2s ease forwards;
+}
+.backInUp {
+  animation: top 1s ease forwards;
+}
 /* 首页 */
 .home {
   position: relative;
@@ -313,6 +343,7 @@ header .lxwm img {
   font-weight: 700;
   padding-top: 60px;
   margin-bottom: 20px;
+  opacity: 0;
 }
 .home .ambient .w1200 > p {
   position: relative;
@@ -321,8 +352,10 @@ header .lxwm img {
   font-family: SimSun;
   font-size: 18px;
   margin-bottom: 80px;
+  opacity: 0;
 }
 .home .ambient .w1200 .markdown-body {
+  opacity: 0;
   width: 100%;
 }
 .home .ambient .w1200 .markdown-body ul {
@@ -342,17 +375,27 @@ header .lxwm img {
   text-align: center;
 }
 .home .ambient .w1200 .markdown-body ul li > a {
+  position: relative;
   display: block;
   width: 380px;
   height: 220px;
   overflow: hidden;
+}
+.home .ambient .w1200 .markdown-body ul li > a img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 .home .ambient .w1200 .markdown-body ul li > a:hover {
   overflow: hidden;
 }
 .home .ambient .w1200 .markdown-body ul li > a:hover img {
   transition: all 1s;
-  transform: scale(1.1);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1.2);
 }
 .home .ambient .w1200 .markdown-body ul li .ambient-l {
   cursor: pointer;
@@ -440,6 +483,10 @@ header .lxwm img {
   background-color: transparent;
   border: 2px solid #fff;
 }
+.home .model h3,
+.home .model li {
+  opacity: 0;
+}
 .home .teacher {
   width: 100%;
   height: 860px;
@@ -483,6 +530,11 @@ header .lxwm img {
   float: left;
   width: 100px;
   height: 80px;
+  cursor: pointer;
+  border: 1px dotted transparent;
+}
+.home .teacher .w1200 ul li > span:hover {
+  border: 1px dotted #1E90FF;
 }
 .home .teacher .w1200 ul li > span img {
   cursor: pointer;
@@ -516,6 +568,9 @@ header .lxwm img {
   overflow: hidden;
   margin-left: 28px;
 }
+.home .teacher .w1200 ul li .news h3:hover {
+  color: #1E90FF;
+}
 .home .teacher .w1200 ul li .news p {
   font-size: 14px;
   color: #989898;
@@ -543,11 +598,14 @@ header .lxwm img {
   color: #989898;
   overflow: hidden;
 }
+.home .teacher .w1200 ul li .time:hover {
+  border: 1px solid transparent;
+}
 /* 轮播图 */
 .homebox {
   text-align: center;
   overflow: hidden;
-  width: 1920px;
+  width: 100vw;
   height: 600px;
   position: relative;
   left: 50%;
@@ -1282,6 +1340,9 @@ header .lxwm img {
   margin-top: 20px;
   margin-bottom: 20px;
 }
+.about .about-bot .about-right .aboutus .newlis span {
+  margin-right: 10px;
+}
 @keyframes top {
   0% {
     opacity: 0;
@@ -1291,6 +1352,91 @@ header .lxwm img {
     opacity: 1;
     transform: translateY(0px);
   }
+}
+.newscss .custom {
+  width: 100%;
+  height: 330px;
+  background: url(../img/tmp1538300266_1761174_s.jpg) no-repeat center top;
+}
+.newscss .about-bot {
+  padding-top: 50px;
+  padding-bottom: 120px;
+}
+.newscss .about-bot .about-left {
+  width: 252px;
+  height: 180px;
+  float: left;
+  animation: top both 1.5s;
+}
+.newscss .about-bot .about-left ul {
+  width: 242px;
+  float: left;
+  margin: 0 10px 10px 0;
+  position: relative;
+  z-index: 2;
+}
+.newscss .about-bot .about-left ul .about-bg {
+  background-color: #00B7D9;
+}
+.newscss .about-bot .about-left ul li {
+  background-color: #00B7D9;
+  text-align: center;
+  height: 50px;
+  line-height: 50px;
+  margin-bottom: 10px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+}
+.newscss .about-bot .about-left ul li a {
+  display: block;
+  height: 50px;
+  width: 242px;
+}
+.newscss .about-bot .about-left ul li a:hover {
+  background-color: #00B7D9;
+}
+.newscss .about-bot .about-right {
+  float: left;
+  animation: top both 1.5s;
+  background-color: #fff;
+  box-sizing: border-box;
+  padding-left: 20px;
+  text-indent: 1rem;
+}
+.newscss .about-bot .about-right h2 {
+  text-indent: 0;
+  text-align: left;
+  font-weight: 400;
+  margin-bottom: 10px;
+  border-bottom: 1px dotted #ccc;
+}
+.newscss .about-bot .about-right .aboutus {
+  width: 938px;
+  margin: 0 10px 10px 0;
+  padding-top: 20px;
+  padding: 20px 20px 20px 20px;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 2;
+  background-color: #fff;
+}
+.newscss .about-bot .about-right .aboutus .title h1 {
+  font-size: 30px;
+  color: #333333;
+  font-weight: 700;
+  width: 100%;
+  overflow: hidden;
+  height: 55px;
+  position: relative;
+  border-bottom: 1px solid #dbdbdb;
+}
+.newscss .about-bot .about-right .aboutus .Details {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.newscss .about-bot .about-right .newlis span {
+  margin-right: 10px;
 }
 .Environment .mbx-top {
   height: 35px;
@@ -1321,10 +1467,8 @@ header .lxwm img {
 .Environment ul li {
   float: left;
   width: 292px;
-  height: 372px;
-  margin-right: 20px;
+  height: 300px;
   border-top: 1px solid #e0dfdd;
-  border-bottom: 1px solid #e0dfdd;
   box-sizing: border-box;
 }
 .Environment ul li .pic {
@@ -1402,6 +1546,9 @@ header .lxwm img {
   text-align: center;
   font-size: 18px;
 }
+.Envdetails .bigdd {
+  position: relative;
+}
 .Envdetails .pics {
   width: 420px;
   height: 420px;
@@ -1439,8 +1586,10 @@ header .lxwm img {
 .Envdetails .box div img {
   position: absolute;
   left: 50%;
-  top: 50%;
+  top: 35%;
   transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
 }
 .Envdetails .price {
   color: #555;
@@ -1640,6 +1789,10 @@ footer .fot-top .ev-module-Telnum p {
 footer .fot-top .right {
   float: right;
   margin-top: 45px;
+  text-align: center;
+}
+footer .fot-top .right a {
+  display: block;
 }
 footer .fot-top .right img {
   width: 162px;

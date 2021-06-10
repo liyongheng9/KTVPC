@@ -25,7 +25,7 @@ export default {
     },
     mounted () {
         this.$http.get('/api/about_us/list').then(res => {
-            console.log(res)
+            // console.log(res)
             this.value = res[1].content
             this.title = res[1].title
         })

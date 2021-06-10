@@ -1,6 +1,20 @@
 <template>
     <div class="Envdetails w1200">
-        <div class="clearfix">
+        <!-- 轮播图 -->
+        <div class="homebox">
+            <img :src="srcurl(advertising.image)" class="bg">
+            <div class="w1200">
+                <div class="news">
+                    <h3 class="markdown-body">
+                        <VueMarkdown :source="value1"></VueMarkdown>
+                    </h3>
+                </div>
+                <div class="app">
+                    <img src="../assets/img/patrick.png" alt="">
+                </div>
+                <span>T：13688143752</span>
+            </div>
+        </div>
             <div class="mbx-top">
             <span>
                 <router-link to="/index/home">首页</router-link>
@@ -15,14 +29,14 @@
             <h3 class="top-title">
                 {{data.title}}
             </h3>
-            <div ref="Bigbox" class="clearfix">
+            <div ref="Bigbox" class="clearfix bigdd">
                 <div class="pics fl" ref="big"
                     @mouseenter="onMouseEnter()"
                     @mouseleave="leave()"
                     @mousemove="onMouseMoveSmall($event)">
-                        <img :src="url(data.image)" alt="">
-                        <div class="mask" v-show="isShow" ref="small"></div>
-                    </div>
+                    <img :src="url(data.image)" alt="" ref="big1">
+                    <div class="mask" v-show="isShow" ref="small"></div>
+                </div>
                     <div class="box fl" v-show="isShow">
                         <div ref="showImg">
                             <img :src="url(data.image)" alt="" class="bigimg">
@@ -46,7 +60,6 @@
                         </div>
                     </div>
             </div>
-        </div>
         <div class="p-tab-show-detail" id="pTabShowDetail">
             <div class="tab-switch-module">
                 <div class="tab-switch-t">
@@ -89,7 +102,11 @@
 @import '../assets/less/index.less';
 </style>
 <script>
+import VueMarkdown from 'vue-markdown'
 export default {
+    components: {
+        VueMarkdown // 注入组件
+    },
     data () {
         return {
             data: '',
@@ -97,12 +114,23 @@ export default {
             num: null,
             num1: 1,
             num2: 1,
-            isShow: false
+            isShow: false,
+            value1: '',
+            advertising: {}
         }
     },
     methods: {
         url (src) {
             return this.imgURL + src
+        },
+        srcurl (url) {
+            return this.http + url
+        },
+        getadvertising () {
+             this.$http.get('/api/carousel_map/list').then(res => {
+                this.advertising = res[0]
+                this.value1 = res[0].content
+            })
         },
         getOneData (id) {
           this.$http.get('/api/ambient/get?id=' + id).then(res => {
@@ -138,7 +166,7 @@ export default {
     // 移动小盒子
     onMouseMoveSmall(e) {
       // 移动范围最大 最小
-      var maxY = this.$refs.big.offsetHeight - this.$refs.small.offsetHeight
+      var maxY = this.$refs.big1.offsetHeight - this.$refs.small.offsetHeight
       var maxX = this.$refs.big.offsetWidth - this.$refs.small.offsetWidth
       var min = 0
       // 鼠标
@@ -148,7 +176,7 @@ export default {
       var smallY = this.$refs.Bigbox.offsetTop
       var smallX = this.$refs.Bigbox.offsetLeft
       // 小盒子的宽高
-      var smallH = this.$refs.small.offsetHeight / 2
+      var smallH = this.$refs.small.offsetHeight / 2 * 3
       var smallW = this.$refs.small.offsetWidth / 2
       // 求出移动的距离
       var x = Sx - smallX - smallW
@@ -168,14 +196,14 @@ export default {
       // 赋值
       this.$refs.small.style.left = x + 'px'
       this.$refs.small.style.top = y + 'px'
-
       this.$refs.showImg.style.left = -x * 1.5 + 'px'
-      if (-y * 1.5 > -262.5) {
+      if (-y * 1.5 > -168) {
         this.$refs.showImg.style.top = -y * 1.5 + 'px'
       }
     }
     },
     mounted () {
+        this.getadvertising()
         console.log(this.$router)
         this.num = parseInt(this.$route.params.id)
         this.getOneData(this.$route.params.id)
@@ -190,46 +218,4 @@ export default {
         })
     }
 }
-    // var pic = document.querySelector('.pics')
-    // var mask = document.querySelector('.mask')
-    // var big = document.querySelector('.box')
-    // var bigimg = document.querySelector('.bigimg')
-    // // 当鼠标经过小盒子显示mask和big
-    // pic.addEventListener('mouseover', function () {
-    //     mask.style.display = 'block'
-    //     big.style.display = 'block'
-    // })
-    // pic.addEventListener('mouseout', function () {
-    //     mask.style.display = 'none'
-    //     big.style.display = 'none'
-    // })
-    // pic.addEventListener('mousemove', function(e) {
-    //     // 得到鼠标在盒子里的位置
-    //     var mouseX = e.pageX - this.offsetLeft
-    //     var mouseY = e.pageY - this.offsetTop
-    //     var maskX = mouseX - mask.offsetWidth / 2
-    //     var maskY = mouseY - mask.offsetWidth / 2
-    //     // 最大移动范围
-    //     var max = pic.offsetWidth - mask.offsetWidth
-    //     if (maskX > max) {
-    //         maskX = max
-    //     } else if (maskX < 0) {
-    //         maskX = 0
-    //     }
-    //     if (maskY > max) {
-    //         maskY = max
-    //     } else if (maskY < 0) {
-    //         maskY = 0
-    //     }
-    //     mask.style.left = maskX + 'px'
-    //     mask.style.top = maskY + 'px'
-    //     // 大图片跟着动
-    //     var maxBig = bigimg.offsetWidth - big.offsetWidth
-    //     // maxBig / max 大盒子正对小盒子移动的比例
-    //     var bigX = maxBig / max * maskX
-    //     var bigY = maxBig / max * maskY
-    //     // 大图默认左边对齐, 所以小图往右移动,则大图是往左移动
-    //     bigimg.style.left = -bigX + 'px'
-    //     bigimg.style.top = -bigY + 'px'
-    // })
 </script>

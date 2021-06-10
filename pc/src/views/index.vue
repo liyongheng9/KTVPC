@@ -16,7 +16,7 @@
                 </div>
             </div>
         </header>
-        <div class="content">
+        <div class="content" ref="content">
             <!-- keep-alive -->
             <!-- exclude排除缓存组件的名称 -->
             <!-- include包含指定名称的组件进行缓存 -->
@@ -50,12 +50,15 @@
                 <span @click.prevent="getflag"></span>
             </div>
         </div>
-        <my-footer></my-footer>
+        <div class="foot">
+            <my-footer></my-footer>
+        </div>
     </div>
 </template>
 
 <script>
 import Footer from './Footer'
+import '../assets/js/index.js'
 export default {
     data () {
         return {
@@ -97,7 +100,8 @@ export default {
                 }
             ],
             flag: false,
-            delflag: false
+            delflag: false,
+            animflag: false
         }
     },
     methods: {

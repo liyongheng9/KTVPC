@@ -43,7 +43,7 @@ img {
     display: none;
   }
 .w1200 {
-    position: relative;
+    // position: relative;
     width: 1200px;
     margin: 0 auto;
 }
@@ -178,6 +178,7 @@ header {
 
 /* 内容 */
 .content {
+    overflow: hidden;
     position: relative;
     width: 100%;
 
@@ -274,6 +275,48 @@ header {
         }
     }
 }
+.anim {
+    .ambientbox {
+        h3,
+        p {
+            animation: top 1s ease forwards;
+        }
+        .markdown-body {
+            animation: top 1s ease 1.5s forwards;
+        }
+    }
+    .fot-top {
+        .ev-module-text,
+        .ev-module-Telnum,
+        .right {
+            animation: top 1s ease forwards;
+        }
+    }
+    .abouybox {
+        h3 {
+            animation: top 1s ease forwards;
+        }
+    }
+    .modelbox {
+        h2 {
+            animation: top 1s ease forwards;
+        }
+        li {
+            animation: top 1.2s ease forwards;
+        }
+    }
+    .model {
+        h2 {
+            animation: top 1.5s ease forwards;
+        }
+        li {
+            animation: top 2s ease forwards;
+        }
+    }
+}
+.backInUp {
+    animation: top 1s ease forwards;
+}
 
 /* 首页 */
 .home {
@@ -319,6 +362,7 @@ header {
                 font-weight: 700;
                 padding-top: 60px;
                 margin-bottom: 20px;
+                opacity: 0;
             }
             &>p {
                 position: relative;
@@ -327,8 +371,10 @@ header {
                 font-family: SimSun;
                 font-size: 18px;
                 margin-bottom: 80px;
+                opacity: 0;
             }
             .markdown-body {
+                opacity: 0;
                 width: 100%;
                 ul {
                     margin: 0;
@@ -345,16 +391,26 @@ header {
                         height: 440px;
                         text-align: center;
                         &>a {
+                            position: relative;
                             display: block;
                             width: 380px;
                             height: 220px;
                             overflow: hidden;
+                            img {
+                                position: absolute;
+                                top: 50%;
+                                left: 50%;
+                                transform: translate(-50%, -50%);
+                            }
                         }
                         &>a:hover {
                             overflow: hidden;
                             img {
                                 transition: all 1s;
-                                transform: scale(1.1);
+                                position: absolute;
+                                top: 50%;
+                                left: 50%;
+                                transform: translate(-50%, -50%) scale(1.2);
                             }
                         }
                         .ambient-l {
@@ -451,7 +507,12 @@ header {
             }
         }
     }
-    
+    .model {
+        h3,
+        li {
+            opacity: 0;
+        }
+    }
     /* 新闻 */
     .teacher {
         width: 100%;
@@ -493,6 +554,11 @@ header {
                         float: left;
                         width: 100px;
                         height: 80px;
+                        cursor: pointer;
+                        border: 1px dotted transparent;
+                        &:hover {
+                            border: 1px dotted #1E90FF;
+                        }
                         img {
                             cursor: pointer;
                             max-width: 100px;
@@ -526,6 +592,9 @@ header {
                             cursor: pointer;
                             overflow: hidden;
                             margin-left: 28px;
+                            &:hover {
+                                color: #1E90FF;
+                            }
                         }
                         p {
                             font-size: 14px;
@@ -554,6 +623,9 @@ header {
                         font-size: 14px;
                         color: #989898;
                         overflow: hidden;
+                        &:hover {
+                            border: 1px solid transparent;
+                        }
                     }
                 }
             }
@@ -564,7 +636,7 @@ header {
 .homebox {
     text-align: center;
     overflow: hidden;
-    width: 1920px;
+    width: 100vw;
     height: 600px;
     position: relative;
     left: 50%;
@@ -1327,7 +1399,11 @@ header {
                 }                                                   .Details {
                     margin-top: 20px;
                     margin-bottom: 20px;
-                }                                     
+                }                          .newlis {
+                    span {
+                        margin-right: 10px;
+                    }
+                }      
             }
         }
     }
@@ -1340,6 +1416,98 @@ header {
     100% {
         opacity: 1;
         transform: translateY(-0px);
+    }
+}
+
+.newscss {
+    .custom {
+        width: 100%;
+        height: 330px;
+        // background-position: center top;
+        background:url(../img/tmp1538300266_1761174_s.jpg) no-repeat center top;
+    }
+    .about-bot {
+        padding-top: 50px;
+        padding-bottom: 120px;
+        .about-left {
+            width: 252px;
+            height: 180px;
+            float: left;
+            animation: top both 1.5s;
+            ul {
+                width: 242px;
+                float: left;
+                margin: 0 10px 10px 0;
+                position: relative;
+                z-index: 2;
+                .about-bg {
+                    background-color: #00B7D9;
+                }
+                li {
+                    background-color: #00B7D9;
+                    text-align: center;
+                    height: 50px;
+                    line-height: 50px;
+                    margin-bottom: 10px;
+                    font-size: 16px;
+                    font-weight: 700;
+                    color: #fff;
+                    a {
+                        display: block;
+                        height: 50px;
+                        width: 242px;
+                    }
+                    a:hover {
+                        background-color: #00B7D9;
+                    }
+                }
+            }
+        }
+        .about-right {
+            float: left;
+            animation: top both 1.5s;
+            background-color: #fff;
+            box-sizing: border-box;
+            padding-left: 20px;
+            text-indent: 1rem;
+            h2 {
+                text-indent: 0;
+                text-align: left;
+                font-weight: 400;
+                margin-bottom: 10px;
+                border-bottom: 1px dotted #ccc;
+            }
+            .aboutus {
+                width: 938px;
+                margin: 0 10px 10px 0;
+                padding-top: 20px;
+                padding: 20px 20px 20px 20px;
+                box-sizing: border-box;
+                position: relative;
+                z-index: 2;
+                background-color: #fff;
+                .title {
+                    h1 {
+                        font-size: 30px;
+                        color: #333333;
+                        font-weight: 700;
+                        width: 100%;
+                        overflow: hidden;
+                        height: 55px;
+                        position: relative;
+                        border-bottom: 1px solid #dbdbdb;
+                    }
+                }                                                   .Details {
+                    margin-top: 20px;
+                    margin-bottom: 20px;
+                }                                     
+            }
+            .newlis {
+                span {
+                    margin-right: 10px;
+                }
+            }
+        }
     }
 }
 // 环境展示
@@ -1374,10 +1542,8 @@ header {
         li {
             float: left;
             width: 292px;
-            height: 372px;
-            margin-right: 20px;
+            height: 300px;
             border-top: 1px solid #e0dfdd;
-            border-bottom: 1px solid #e0dfdd;
             box-sizing: border-box;
             .pic {
                 width: 280px;
@@ -1458,8 +1624,10 @@ header {
         text-align: center;
         font-size: 18px;
     }
+    .bigdd {
+        position: relative;
+    }
     .pics {
-        // position: relative;
         width: 420px;
         height: 420px;
         img {
@@ -1495,10 +1663,10 @@ header {
             img {
                 position: absolute;
                 left: 50%;
-                top: 50%;
+                top: 35%;
                 transform: translate(-50%, -50%);
-                // width: 100%;
-                // height: 100%;
+                width: 100%;
+                height: 100%;
             }
         }
     }
@@ -1702,6 +1870,10 @@ footer {
         .right {
             float: right;
             margin-top: 45px;
+            text-align: center;
+            a {
+                display: block;
+            }
             img {
                 width: 162px;
                 height: 162px;

@@ -161,10 +161,10 @@ export default {
             // console.log(e.pageX, e.pageY)
             this.obj2.x = e.pageX
             this.obj2.y = e.pageY
-            var moveX = this.obj2.x - this.obj1.x - 87.5
-            var moveY = this.obj2.y - this.obj1.y - 87.5
+            var moveX = this.obj2.x - this.obj1.x - 97.5
+            var moveY = this.obj2.y - this.obj1.y - 230
             var moveX2 = this.obj2.x - this.obj1.x + 87.5
-            var moveY2 = this.obj2.y - this.obj1.y + 87.5
+            var moveY2 = this.obj2.y - this.obj1.y - 140
             if (moveX <= 0) {
                 moveX = 0
             } else if (moveX >= 420 - 175) {
@@ -184,10 +184,9 @@ export default {
         out () {
             this.flag = false
         },
-        over (e) {
-            this.obj1.x = e.pageX
-            this.obj1.y = e.pageY
-            // console.log(e)
+        over () {
+            this.obj1.x = this.$refs.model.offsetLeft + this.$refs.over.offsetLeft
+            this.obj1.y = this.$refs.model.offsetTop + this.$refs.over.offsetTop
         }
     },
     mounted () {
@@ -197,10 +196,6 @@ export default {
         /* 模特 */
         this.getmodel()
         this.getmodellist(this.id)
-        // console.log(this.$refs.model.offsetLeft + this.$refs.over.offsetLeft, '111111111111')
-        // console.log(this.$refs.model.offsetTop + this.$refs.over.offsetTop, '111111111111')
-        // console.log(this.$refs.over.offsetLeft)
-        // console.log(this.$refs.over.offsetTop)
     }
 }
 </script>

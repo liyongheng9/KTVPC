@@ -1,6 +1,21 @@
 <template>
     <div class="Environment w1200">
-       <div class="mbx-top">
+        <!-- 轮播图 -->
+        <div class="homebox">
+            <img :src="srcurl(advertising.image)" class="bg">
+            <div class="w1200">
+                <div class="news">
+                    <h3 class="markdown-body">
+                        <VueMarkdown :source="value1"></VueMarkdown>
+                    </h3>
+                </div>
+                <div class="app">
+                    <img src="../assets/img/patrick.png" alt="">
+                </div>
+                <span>T：13688143752</span>
+            </div>
+        </div>
+       <div class="mbx-top" ref="top">
            <span>
                <router-link to="/home">首页</router-link>
             </span>
@@ -43,10 +58,16 @@ p {
 }
 </style>
 <script>
+import VueMarkdown from 'vue-markdown'
 export default {
+    components: {
+        VueMarkdown // 注入组件
+    },
     data () {
         return {
-            value: []
+            value: [],
+            value1: '',
+            advertising: {}
         }
     },
     methods: {
@@ -55,14 +76,25 @@ export default {
         },
         details (id) {
             this.$router.push('/envdetails/' + id)
+            window.scroll(0, this.$refs.top.offsetTop)
+        },
+        srcurl (url) {
+            return this.http + url
+        },
+        getadvertising () {
+             this.$http.get('/api/carousel_map/list').then(res => {
+                this.advertising = res[0]
+                this.value1 = res[0].content
+            })
         }
     },
     mounted () {
+        this.getadvertising()
         this.$http.get('/api/ambient/list').then(res => {
             console.log(res)
             var arr = res
             this.value = arr.filter((val, index) => {
-                if (index < 3) {
+                if (index < 5) {
                     return arr[index]
                 }
             })

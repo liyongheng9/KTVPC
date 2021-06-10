@@ -18,7 +18,7 @@
         </div>
         <!-- 环境 -->
         <div class="ambient">
-            <div class="w1200">
+            <div class="w1200 ambientbox">
                 <h3>ENVIRONMENTAL DISPLAY</h3>
                 <p class="border-b">环境/AMBIENT</p>
                 <div class="markdown-body">
@@ -49,7 +49,7 @@
         </div>
         <!-- 关于 -->
         <div class="abouy">
-            <div class="w1200">
+            <div class="w1200 abouybox">
                 <h3>关于/ABOUT</h3>
                 <h2>锦缘国际夜总会</h2>
                 <p>成都夜总会，成都夜场，成都酒吧各种模特佳丽【13688143752】，设备齐全，装修高端，资源丰富，生意每天开到爆，欢迎随时预定包厢</p>
@@ -59,7 +59,7 @@
         <!-- 高端KTV夜总会模特 -->
         <div class="model">
             <h2 class="border-b">高端KTV夜总会模特</h2>
-            <div class="w1200">
+            <div class="w1200 modelbox">
                 <ul>
                     <li v-for="val in  model" :key="val.id" @click.prevent="getmodeldetailed(val.id)">
                         <a href="#">
