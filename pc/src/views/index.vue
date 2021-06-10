@@ -49,6 +49,9 @@
                 </ul>
                 <span @click.prevent="getflag"></span>
             </div>
+            <div class="returntop">
+                <img src="../assets/img/back_top_Z.png" alt="">
+            </div>
         </div>
         <div class="foot">
             <my-footer></my-footer>

@@ -6,11 +6,14 @@ $(function () {
     var ambienttop = $('.ambient').offset().top
     var abouytop = $('.abouy').offset().top
     var teachertop = $('.teacher').offset().top
-    console.log(ambienttop)
+    // console.log(ambienttop)
     window.onscroll = function () {
-        console.log(document.documentElement.scrollTop, '111', teachertop)
+        // console.log(document.documentElement.scrollTop, '111', teachertop)
         if (document.documentElement.scrollTop >= homeboxtop - 50) {
             $('.ambient').addClass('anim')
+            $('.returntop').show()
+        } else {
+            $('.returntop').hide()
         }
         if (document.documentElement.scrollTop >= (parseInt(ambienttop) + 200)) {
             $('.abouy').addClass('anim')
@@ -21,5 +24,21 @@ $(function () {
         if (document.documentElement.scrollTop >= teachertop) {
             $('.foot').addClass('anim')
         }
+    }
+    $('.returntop').click(function () {
+        // console.log(1)
+        animate(window, 0)
+    })
+    function animate (obj, target) {
+        clearInterval(obj.timer)
+        obj.timer = setInterval(function() {
+            var step = (target - obj.pageYOffset) / 10
+            step = step > 0 ? Math.ceil(step) : Math.floor(step)
+            if (obj.pageYOffset === target) {
+                clearInterval(obj.timer)
+            } else {
+                obj.scroll(0, obj.pageYOffset + step)
+            }
+        }, 50)
     }
 })

@@ -19,13 +19,13 @@
         </div>
         <div class="about w1200">
             <div class="crumbsnav">
-                <a href="#" @click="index">首页</a>
+                <a href="#" @click.prevent="index">首页</a>
                 &nbsp;&nbsp; >> &nbsp;&nbsp;
-                <a href="#" @click="newsshows">夜场新闻</a>
+                <a href="#" @click.prevent="newsshows">夜场新闻</a>
                 &nbsp;&nbsp; >> &nbsp;&nbsp;
-                <a href="#" @click="newsshows">成都夜场</a>
+                <a href="#" @click.prevent="newsshows">成都夜场</a>
                 &nbsp;&nbsp; >> &nbsp;&nbsp;
-                <a href="#" @click="Newsdetail">{{data.title}}</a>
+                <a href="#" @click.prevent="Newsdetail">{{data.title}}</a>
             </div>
             <div class="about-bot w1200 clearfix">
                 <div class="about-left fl">
