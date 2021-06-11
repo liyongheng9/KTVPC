@@ -104,7 +104,6 @@ export default {
              this.$http.get('/api/carousel_map/list').then(res => {
                 this.advertising = res[0]
                 this.value = res[0].content
-                // console.log(res)
             })
         },
         index () {
@@ -124,14 +123,18 @@ export default {
             }
         },
         next1 () {
-            if (this.id !== parseInt(this.arrid)) {
+            // if (this.id !== parseInt(this.arrid)) {
                 this.next()
                 this.id++
-            }
+            // }
+             this.$http.get('/api/journalism/get?id=' + this.id).then(res => {
+                this.data = res
+            })
                 setTimeout(() => {
                     this.data = this.nextdata
                      this.data.content = this.data.content.replace('/', this.imgURL + '/')
-                }, 800)
+                }, 1000)
+                this.prev()
         },
         prev () {
             if (parseInt(this.id) !== 1) {
@@ -149,6 +152,7 @@ export default {
                     this.data = this.prevdata
                      this.data.content = this.data.content.replace('/', this.imgURL + '/')
                 }, 800)
+            this.next()
         },
         all () {
             this.$http.get('/api/journalism/list').then(res => {
@@ -162,6 +166,7 @@ export default {
         this.id = this.$route.params.id
         this.$http.get('/api/journalism/get?id=' + this.id).then(res => {
             this.data = res
+            this.data.content = this.data.content.replace('/', this.imgURL + '/')
         })
         this.all()
         this.next()
