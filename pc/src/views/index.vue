@@ -23,7 +23,7 @@
             <keep-alive>
                 <router-view />
             </keep-alive>
-            <div class="immobilization" @mouseover="setflag"  :class="flag ? 'dn' : ''"></div>
+            <div class="immobilization"></div>
             <div class="nav" :class="flag ? '' : 'dn'">
                 <ul>
                     <li @click="getonline">
@@ -33,12 +33,23 @@
                             联系我们：<br>
                             13688143752
                             <span class="online_tel-bg"></span>
-                <span class="online_tel-btn" v-on:click.stop.prevent="delonline"></span>
+                            <span class="online_tel-btn" v-on:click.stop.prevent="delonline"></span>
                         </div>
                     </li>
-                    <li>
+                    <li @click="getonline1">
                         <img src="../assets/img/online_message.png" alt="">
                         <p>在线留言</p>
+                        <div :class="delflag1 ? 'online_tel1' : 'dn' ">
+                            <dl>
+                         <dt><textarea data-mul="2" data-length="250" name="content2" id="content2"></textarea></dt>
+                        <dd class="text_length">还可输入字符<b>250</b>（限制字符250）</dd>
+                        <dd><label>您的姓名：</label><input type="text" class="text_input" name="name" id="name" maxlength="20"></dd>
+                        <dd><label>您的邮箱：</label><input type="text" class="text_input" name="e_mail" id="e_mail" maxlength="50"></dd>
+                        <dd><label>您的电话：</label><input type="text" class="text_input" name="tel" id="tel" maxlength="30"><input type="button" class="submitBut" value="提交" onclick="sub_check(1913406)"></dd>
+                      </dl>
+                            <span class="online_tel-bg"></span>
+                            <span class="online_tel-btn" v-on:click.stop.prevent="delonline1"></span>
+                        </div>
                     </li>
                     <li>
                         <a href="mailto:260208989@qq.com">
@@ -47,7 +58,7 @@
                         </a>
                     </li>
                 </ul>
-                <span @click.prevent="getflag"></span>
+                <span @click.prevent="getflag" class="guanbi"></span>
             </div>
             <div class="returntop">
                 <img src="../assets/img/back_top_Z.png" alt="">
@@ -104,6 +115,7 @@ export default {
             ],
             flag: false,
             delflag: false,
+            delflag1: false,
             animflag: false
         }
     },
@@ -125,6 +137,12 @@ export default {
         },
         delonline () {
             this.delflag = false
+        },
+        getonline1 () {
+            this.delflag1 = true
+        },
+         delonline1 () {
+            this.delflag1 = false
         }
     },
     components: {

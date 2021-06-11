@@ -41,4 +41,12 @@ $(function () {
             }
         }, 50)
     }
+    $('.immobilization').on('mouseover', function() {
+        $('.immobilization').fadeOut(100)
+        $('.content .nav').fadeIn(1000)
+    })
+    $('.guanbi').on('click', function() {
+        $('.content .nav').fadeOut(1000)
+        $('.immobilization').fadeIn(1500)
+    })
 })
