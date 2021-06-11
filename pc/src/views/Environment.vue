@@ -10,9 +10,9 @@
                     </h3>
                 </div>
                 <div class="app">
-                    <img src="../assets/img/patrick.png" alt="">
+                    <img :src="srcurl(value2.image)" alt="">
                 </div>
-                <span>T：13688143752</span>
+                <span>{{value2.phone}}</span>
             </div>
         </div>
        <div class="mbx-top" ref="top">
@@ -67,6 +67,7 @@ export default {
         return {
             value: [],
             value1: '',
+            value2: '',
             advertising: {}
         }
     },
@@ -86,12 +87,18 @@ export default {
                 this.advertising = res[0]
                 this.value1 = res[0].content
             })
+        },
+        getfoot () {
+             this.$http.get('/api/footer/get').then(res => {
+                // this.advertising = res[0]
+                this.value2 = res
+            })
         }
     },
     mounted () {
         this.getadvertising()
         this.$http.get('/api/ambient/list').then(res => {
-            console.log(res)
+            // console.log(res)
             var arr = res
             this.value = arr.filter((val, index) => {
                 if (index < 5) {
@@ -99,6 +106,7 @@ export default {
                 }
             })
         })
+        this.getfoot()
     }
 }
 </script>

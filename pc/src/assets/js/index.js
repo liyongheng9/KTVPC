@@ -1,7 +1,7 @@
 import $ from 'jquery'
 $(function () {
     // console.log(1111)
-    // console.log($('.homebox').offset().top)
+    console.log($('.homebox1').offset().top)
     var homeboxtop = $('.homebox').offset().top
     var ambienttop = $('.ambient').offset().top
     var abouytop = $('.abouy').offset().top

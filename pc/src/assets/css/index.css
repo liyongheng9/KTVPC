@@ -1234,7 +1234,7 @@ header .lxwm img {
 }
 .newslist .newsbox .news-nav a {
   position: relative;
-  display: block;
+  display: inline-block;
   padding-left: 20px;
   height: 50px;
   line-height: 50px;

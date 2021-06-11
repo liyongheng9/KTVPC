@@ -10,9 +10,9 @@
                     </h3>
                 </div>
                 <div class="app">
-                    <img src="../assets/img/patrick.png" alt="">
+                    <img :src="srcurl(value1.image)" alt="">
                 </div>
-                <span>T：13688143752</span>
+                <span>{{value1.phone}}</span>
             </div>
         </div>
         <div class="crumbsnav">
@@ -25,8 +25,8 @@
         <!-- 新闻 -->
         <div class="newsbox clearfix w1200">
             <div class="news-nav">
-                <div class="news-shows-top">夜场新闻</div>
-                <a href="#" @click="newsshows">成都夜场</a>
+                <div class="news-shows-top news-shows-topA">夜场新闻</div>
+                <a href="#" @click="newsshows(val.id)" v-for="val in type" :key="val.id">{{val.name}}</a>
                 <span></span>
             </div>
             <div class="news-shows">
@@ -63,15 +63,22 @@ export default {
         return {
             advertising: {},
             news: [],
-            value: ''
+            value: '',
+            value1: '',
+            type: []
         }
     },
     methods: {
         index () {
             this.$router.push('/index')
         },
-        newsshows () {
-            this.$router.push('/news')
+        newsshows (id) {
+            // this.$router.push('/news')
+            this.$http.get('/api/journalism/list').then(res => {
+                // console.log(res)
+                // console.log(id)
+                this.news = res.filter(val => val.journalismtype_id === id)
+            })
         },
         srcurl (url) {
             return this.http + url
@@ -83,20 +90,34 @@ export default {
                 // console.log(res)
             })
         },
+        gettype () {
+            this.$http.get('/api/journalismtype/list').then(res => {
+                console.log(res)
+                this.type = res
+            })
+        },
         getnews () {
             this.$http.get('/api/journalism/list').then(res => {
-                // console.log(res)
+                console.log(res)
                 this.news = res
             })
         },
         newsclick (id) {
             this.$router.push('/newsdetail/' + id)
+        },
+        getfoot () {
+             this.$http.get('/api/footer/get').then(res => {
+                // this.advertising = res[0]
+                this.value1 = res
+            })
         }
     },
     mounted () {
         /* 广告 */
         this.getadvertising()
         this.getnews()
+        this.getfoot()
+        this.gettype()
     }
 }
 </script>

@@ -10,9 +10,9 @@
                     </h3>
                 </div>
                 <div class="app">
-                    <img src="../assets/img/patrick.png" alt="">
+                    <img :src="srcurl(value1.image)" alt="">
                 </div>
-                <span>T：13688143752</span>
+                <span>{{value1.phone}}</span>
             </div>
         </div>
         <!-- 高端KTV夜总会模特 -->
@@ -68,7 +68,8 @@ export default {
         return {
             advertising: {},
             model: [],
-            value: ''
+            value: '',
+            value1: ''
         }
     },
     methods: {
@@ -103,6 +104,12 @@ export default {
                 })
                 // console.log(this.model)
             })
+        },
+        getfoot () {
+             this.$http.get('/api/footer/get').then(res => {
+                // this.advertising = res[0]
+                this.value1 = res
+            })
         }
     },
     mounted () {
@@ -110,6 +117,7 @@ export default {
         this.getadvertising()
         /* 模特 */
         this.getmodel()
+        this.getfoot()
     }
 }
 </script>

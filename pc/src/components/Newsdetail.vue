@@ -1,5 +1,6 @@
 <template>
     <div style="overflow: hidden;" class="newscss">
+        <!-- 轮播图 -->
         <div class="homebox">
             <img :src="srcurl(advertising.image)" class="bg">
             <div class="w1200">
@@ -9,9 +10,9 @@
                     </h3>
                 </div>
                 <div class="app">
-                    <img src="../assets/img/patrick.png" alt="">
+                    <img :src="srcurl(value1.image)" alt="">
                 </div>
-                <span>T：13688143752</span>
+                <span>{{value1.phone}}</span>
             </div>
         </div>
         <div class="jp">
@@ -85,6 +86,7 @@ export default {
             id: '',
             advertising: {},
             value: '',
+            value1: '',
             nextdata: [],
             prevdata: [],
             arrid: ''
@@ -159,6 +161,12 @@ export default {
                 var arr = res
                 this.arrid = arr[arr.length - 1].id
             })
+        },
+        getfoot () {
+             this.$http.get('/api/footer/get').then(res => {
+                // this.advertising = res[0]
+                this.value1 = res
+            })
         }
     },
     mounted () {
@@ -171,6 +179,7 @@ export default {
         this.all()
         this.next()
         this.prev()
+        this.getfoot()
     }
 }
 </script>

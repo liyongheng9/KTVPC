@@ -10,9 +10,9 @@
                     </h3>
                 </div>
                 <div class="app">
-                    <img src="../assets/img/patrick.png" alt="">
+                    <img :src="srcurl(value2.image)" alt="">
                 </div>
-                <span>T：13688143752</span>
+                <span>{{value2.phone}}</span>
             </div>
         </div>
             <div class="mbx-top">
@@ -116,10 +116,17 @@ export default {
             num2: 1,
             isShow: false,
             value1: '',
+            value2: '',
             advertising: {}
         }
     },
     methods: {
+        getfoot () {
+             this.$http.get('/api/footer/get').then(res => {
+                // this.advertising = res[0]
+                this.value2 = res
+            })
+        },
         url (src) {
             return this.imgURL + src
         },
@@ -135,7 +142,7 @@ export default {
         getOneData (id) {
           this.$http.get('/api/ambient/get?id=' + id).then(res => {
               this.data = res
-              console.log(this.data)
+            //   console.log(this.data)
           })
         },
         details (id) {
@@ -204,11 +211,11 @@ export default {
     },
     mounted () {
         this.getadvertising()
-        console.log(this.$router)
+        // console.log(this.$router)
         this.num = parseInt(this.$route.params.id)
         this.getOneData(this.$route.params.id)
         this.$http.get('/api/ambient/list').then(res => {
-            console.log(res)
+            // console.log(res)
             var arr = res
             this.value = arr.filter((val, index) => {
                 if (val.id !== this.num) {
@@ -216,6 +223,7 @@ export default {
                 }
             })
         })
+        this.getfoot()
     }
 }
 </script>

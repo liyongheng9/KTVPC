@@ -2,7 +2,7 @@
     <div class="home">
         <img src="../assets/img/banner-1.jpg" class="homebg">
         <!-- 轮播图 -->
-        <div class="homebox">
+        <div class="homebox homebox1">
             <img :src="srcurl(advertising.image)" class="bg">
             <div class="w1200">
                 <div class="news">
@@ -11,9 +11,9 @@
                     </h3>
                 </div>
                 <div class="app">
-                    <img src="../assets/img/patrick.png" alt="">
+                    <img :src="srcurl(value1.image)" alt="">
                 </div>
-                <span>T：13688143752</span>
+                <span>{{value1.phone}}</span>
             </div>
         </div>
         <!-- 环境 -->
@@ -111,6 +111,7 @@ export default {
             list: [],
             model: [],
             value: '',
+            value1: '',
             news: []
         }
     },
@@ -138,6 +139,12 @@ export default {
                 this.advertising = res[0]
                 this.value = res[0].content
                 // console.log(res)
+            })
+        },
+        getfoot () {
+             this.$http.get('/api/footer/get').then(res => {
+                // this.advertising = res[0]
+                this.value1 = res
             })
         },
         getlist () {
@@ -181,6 +188,7 @@ export default {
         this.getmodel()
         /* 新闻 */
         this.getteacher()
+        this.getfoot()
     }
 }
 </script>
